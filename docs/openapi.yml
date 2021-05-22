@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: MEGANE Shop API
+  description: MEGANE ShopのAPIについてのドキュメントです
+servers:
+  - url: 'https://magene.example.com/api'
+tags:
+  - name: catalog
+    description: API for MEGANE
+# 新着/検索/商品詳細/カートに入れる/カートから削除する/カートを見る/購入する
+paths:
+  /product/{id}:
+    get:
+      operationId: getProduct
+      tags:
+        - product
+      summary: 指定されたIDの商品詳細を返す
+      parameters:
+        - name: id
+          in: path
+          description: 商品ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/Article'
+  /catalog/latest: 
+    get:
+  /catalog/search:
+    post:
+  /cart:
+    get:
+    post:
+    put:
+    delete:
+  /articles:
+    post:
+      operationId: createArticle
+      tags:
+        - article
+      summary: Create a new blank article
+      description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/Article'
+  '/articles/{article_id}':
+    put:
+      operationId: saveArticle
+      tags:
+        - article
+      summary: Update an existing article
+      description: ''
+      parameters:
+        - name: article_id
+          in: path
+          description: ID of article
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleResponse'
+        '400':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Article not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/Article'

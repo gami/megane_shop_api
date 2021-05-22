@@ -1,0 +1,11 @@
+# OpenAPI
+- mkdir docs
+- openapi.ymlを作成
+
+
+sankou
+Design RESTful query API with a long list of query parameters [closed]
+https://stackoverflow.com/a/31984477
+
+RestfulなWebAPIの設計
+https://qiita.com/kawasukeeee/items/70403129f5a5338cd4ad
